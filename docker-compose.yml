@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+    php:
+        image: alex_dwt/symfony-rest-ddd-task-2020-php:latest
+        build:
+            context: '.'
+            dockerfile: 'php/Dockerfile'
+        networks:
+            - webnet
+        environment:
+            - DATABASE_URL
+            - APP_ENV
+            - APP_SECRET
+            - PHPSTORM_HOST_IP
+        volumes:
+            - ./app:/app
+
+    front:
+        image: nginx:1.17.9-alpine
+        ports:
+              - 8061:80
+        networks:
+              - webnet
+        volumes:
+            - ./nginx/conf.d:/etc/nginx/conf.d:ro
+
+    database:
+        image: mysql:5.7.23
+        volumes:
+            - msdata:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=${DB_PASS}
+            - MYSQL_USER=${DB_USER}
+            - MYSQL_PASSWORD=${DB_PASS}
+            - MYSQL_DATABASE=${DB_NAME}
+        networks:
+            - webnet
+
+networks:
+  webnet:
+
+volumes:
+   msdata:
