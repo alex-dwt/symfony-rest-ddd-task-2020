@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Infrastructure\Persistence\Doctrine\:
+        resource: '../../src/Infrastructure/Persistence/Doctrine/*'
+
+    App\Domain\User\UserRepositoryInterface:
+        alias: App\Infrastructure\Persistence\Doctrine\UserRepository
