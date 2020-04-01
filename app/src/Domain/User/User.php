@@ -20,13 +20,28 @@ class User
     private ?int $id = null;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
      */
     private string $name;
 
-    public function __construct(string $name)
-    {
+    /**
+     * @ORM\Column(type="string")
+     */
+    private string $city;
+
+    /**
+     * @ORM\Column(type="string", length=3, options={"fixed" = true})
+     */
+    private string $country;
+
+    public function __construct(
+        string $name,
+        string $city,
+        string $country
+    ) {
        $this->name = $name;
+       $this->city = $city;
+       $this->country = $country;
     }
 
     public function toArray(): array
@@ -34,6 +49,8 @@ class User
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'city' => $this->city,
+            'country' => $this->country,
         ];
     }
 }
