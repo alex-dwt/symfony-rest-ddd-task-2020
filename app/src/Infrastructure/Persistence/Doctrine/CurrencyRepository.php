@@ -9,6 +9,7 @@ use App\Domain\Wallet\Currency;
 
 /**
  * @method Currency|null getOneByCriteria(DomainCriteria ...$criterias)
+ * @method Currency[] getAll()
  */
 class CurrencyRepository extends AbstractDoctrineRepository
 {

@@ -14,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Currency
 {
+    private const USD_NAME = 'usd';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -36,5 +38,15 @@ class Currency
     {
         $this->name = strtolower($name);
         $this->exchangeRates = new ArrayCollection();
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function isUsd(): bool
+    {
+        return $this->name === self::USD_NAME;
     }
 }

@@ -45,8 +45,8 @@ class ExchangeRate
 
     public function __construct(
         \DateTimeImmutable $date,
-        int $usdRate,
-        Currency $currency
+        Currency $currency,
+        int $usdRate
     ) {
        $this->date = $date;
        $this->usdRate = $usdRate;
