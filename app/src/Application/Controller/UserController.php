@@ -28,7 +28,6 @@ class UserController extends AbstractController
      */
     public function createUserAction(
         Request $request,
-        MessageBusInterface $commandBus,
         CurrencyRepository $currencyRepository
     ) {
         $name = trim((string) $request->get('name'));
@@ -50,8 +49,8 @@ class UserController extends AbstractController
         }
 
         /** @var User $user */
-        $user = $commandBus
-            ->dispatch(new CreateUserCommand(
+        $user = $this->dispatchMessage(
+            new CreateUserCommand(
                 $name,
                 $currency,
                 $country,

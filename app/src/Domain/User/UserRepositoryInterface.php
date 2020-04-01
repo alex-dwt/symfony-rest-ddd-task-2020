@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Domain\User;
 
 use App\Domain\Common\DomainRepository;
-use App\Domain\User;
 
+/**
+ * @method User get(int $id)
+ */
 interface UserRepositoryInterface extends DomainRepository
 {
 }

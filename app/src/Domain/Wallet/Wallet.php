@@ -32,7 +32,7 @@ class Wallet
     private Currency $currency;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\User\User")
+     * @ORM\ManyToOne(targetEntity="App\Domain\User\User", inversedBy="wallets")
      * @ORM\JoinColumn(nullable=false)
      */
     private User $user;
@@ -41,5 +41,10 @@ class Wallet
     {
        $this->currency = $currency;
        $this->user = $user;
+    }
+
+    public function getCurrency(): Currency
+    {
+        return $this->currency;
     }
 }

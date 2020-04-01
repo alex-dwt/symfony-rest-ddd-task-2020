@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
+use App\Domain\Wallet\Wallet;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,14 +37,22 @@ class User
      */
     private string $country;
 
+    /**
+     * @var Wallet[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="App\Domain\Wallet\Wallet", mappedBy="user")
+     */
+    private Collection $wallets;
+
     public function __construct(
         string $name,
         string $city,
         string $country
     ) {
-       $this->name = $name;
-       $this->city = $city;
-       $this->country = strtoupper($country);
+        $this->name = $name;
+        $this->city = $city;
+        $this->country = strtoupper($country);
+
+        $this->wallets = new ArrayCollection();
     }
 
     public function toArray(): array
@@ -52,5 +63,16 @@ class User
             'city' => $this->city,
             'country' => $this->country,
         ];
+    }
+
+    public function getWallet(string $currency): ?Wallet
+    {
+        foreach ($this->wallets as $wallet) {
+            if ($wallet->getCurrency()->getName() === $currency) {
+                return $wallet;
+            }
+        }
+
+        return null;
     }
 }
