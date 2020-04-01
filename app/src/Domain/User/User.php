@@ -41,7 +41,7 @@ class User
     ) {
        $this->name = $name;
        $this->city = $city;
-       $this->country = $country;
+       $this->country = strtoupper($country);
     }
 
     public function toArray(): array
