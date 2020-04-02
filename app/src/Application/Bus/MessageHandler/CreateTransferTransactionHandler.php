@@ -23,7 +23,7 @@ class CreateTransferTransactionHandler implements MessageHandlerInterface
         $this->transactionRepository = $transactionRepository;
     }
 
-    public function __invoke(CreateTransferTransactionCommand $command): void
+    public function __invoke(CreateTransferTransactionCommand $command): Transaction
     {
         $recipientUser = $command->recipientWallet()->getUser();
         $senderUser = $command->senderWallet()->getUser();
@@ -56,5 +56,7 @@ class CreateTransferTransactionHandler implements MessageHandlerInterface
         );
 
         $this->transactionRepository->add($transaction);
+
+        return $transaction;
     }
 }

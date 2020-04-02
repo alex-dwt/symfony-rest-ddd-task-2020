@@ -80,4 +80,18 @@ class User
     {
         return $this->id;
     }
+
+    public function addWallet(Wallet $wallet): void
+    {
+        $this->wallets->add($wallet);
+    }
+
+    public function getAnyWallet(): Wallet
+    {
+        if (!$wallet = $this->wallets->first()) {
+            throw new \LogicException('Every user has to have at least one wallet');
+        }
+
+        return $wallet;
+    }
 }

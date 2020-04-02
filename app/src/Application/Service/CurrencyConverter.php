@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Service;
 
-use App\Domain\Employee\Criteria\ExchangeRateForDateCriteria;
+use App\Domain\Wallet\Criteria\ExchangeRateForDateCriteria;
 use App\Domain\Wallet\Currency;
 use App\Infrastructure\Persistence\Doctrine\CurrencyRepository;
 use App\Infrastructure\Persistence\Doctrine\ExchangeRateRepository;

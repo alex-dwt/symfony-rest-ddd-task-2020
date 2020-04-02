@@ -41,6 +41,8 @@ class Wallet
     {
        $this->currency = $currency;
        $this->user = $user;
+
+        $user->addWallet($this);
     }
 
     public function getCurrency(): Currency

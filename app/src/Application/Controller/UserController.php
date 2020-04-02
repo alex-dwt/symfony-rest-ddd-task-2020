@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\Controller;
 
 use App\Application\Bus\Message\CreateUserCommand;
-use App\Domain\Employee\Criteria\CurrencyByNameCriteria;
+use App\Domain\Wallet\Criteria\CurrencyByNameCriteria;
 use App\Domain\Wallet\TransactionRepositoryInterface;
 use App\Domain\User\User;
 use App\Infrastructure\Persistence\Doctrine\CurrencyRepository;

@@ -39,10 +39,8 @@ class CurrenciesRatesFetcher
         $this->currencyRepository = $currencyRepository;
     }
 
-    public function execute()
+    public function execute(\DateTimeImmutable $date)
     {
-        $date = new \DateTimeImmutable();
-
         $currencies = $this->currencyRepository->getAll();
 
         foreach ($currencies as $currencyFrom) {

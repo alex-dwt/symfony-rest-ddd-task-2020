@@ -19,7 +19,7 @@ class CreateDepositTransactionHandler implements MessageHandlerInterface
         $this->transactionRepository = $transactionRepository;
     }
 
-    public function __invoke(CreateDepositTransactionCommand $command): void
+    public function __invoke(CreateDepositTransactionCommand $command): Transaction
     {
         if ($command->amount() <= 0) {
             throw new \RuntimeException('The zero amount, 422, should be refactored'); // todo
@@ -31,5 +31,7 @@ class CreateDepositTransactionHandler implements MessageHandlerInterface
         );
 
         $this->transactionRepository->add($transaction);
+
+        return $transaction;
     }
 }

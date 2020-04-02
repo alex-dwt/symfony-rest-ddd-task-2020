@@ -35,7 +35,7 @@ class FetchCurrencyRatesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->currencyRatesFetcher->execute();
+        $this->currencyRatesFetcher->execute(new \DateTimeImmutable());
 
         $this->em->flush();
 

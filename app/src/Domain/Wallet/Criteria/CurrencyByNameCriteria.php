@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Employee\Criteria;
+namespace App\Domain\Wallet\Criteria;
 
 use App\Domain\Common\DomainCriteria;
 use Doctrine\Common\Collections\Criteria;
