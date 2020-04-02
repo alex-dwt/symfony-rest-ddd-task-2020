@@ -18,3 +18,5 @@ COPY php/www.conf /usr/local/etc/php-fpm.d/www.conf
 COPY php/boot.bash /scripts/boot.bash
 
 #RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+RUN docker-php-ext-install bcmath

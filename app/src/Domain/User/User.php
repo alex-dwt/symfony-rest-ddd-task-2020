@@ -75,4 +75,9 @@ class User
 
         return null;
     }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 }

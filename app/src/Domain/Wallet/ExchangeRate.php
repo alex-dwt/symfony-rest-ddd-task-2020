@@ -10,11 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity()
  * @ORM\Table(
  *     name="exchange_rates",
- *     indexes={
- *          @ORM\Index(name="date_idx", columns={"date"})
- *      },
  *     uniqueConstraints={
- *          @ORM\UniqueConstraint(name="currency_date_unique_idx", columns={"currency_id", "date"})
+ *          @ORM\UniqueConstraint(
+ *              name="currencies_date_unique_idx",
+ *              columns={"currency_from_id", "currency_to_id", "date"}
+ *          )
  *      }
  * )
  */
@@ -28,28 +28,41 @@ class ExchangeRate
     private ?int $id = null;
 
     /**
-     * @ORM\Column(type="date_immutable")
+     * @ORM\ManyToOne(targetEntity="Currency", inversedBy="exchangeRates")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private \DateTimeImmutable $date;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private int $usdRate;
+    private Currency $currencyFrom;
 
     /**
      * @ORM\ManyToOne(targetEntity="Currency", inversedBy="exchangeRates")
      * @ORM\JoinColumn(nullable=false)
      */
-    private Currency $currency;
+    private Currency $currencyTo;
+
+    /**
+     * @ORM\Column(type="date_immutable")
+     */
+    private \DateTimeImmutable $date;
+
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=2)
+     */
+    private float $rate;
 
     public function __construct(
         \DateTimeImmutable $date,
-        Currency $currency,
-        int $usdRate
+        Currency $currencyFrom,
+        Currency $currencyTo,
+        float $rate
     ) {
        $this->date = $date;
-       $this->usdRate = $usdRate;
-       $this->currency = $currency;
+       $this->rate = $rate;
+       $this->currencyFrom = $currencyFrom;
+       $this->currencyTo = $currencyTo;
+    }
+
+    public function getRate(): float
+    {
+        return $this->rate;
     }
 }

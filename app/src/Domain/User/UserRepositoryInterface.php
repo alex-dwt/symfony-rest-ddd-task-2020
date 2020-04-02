@@ -11,4 +11,5 @@ use App\Domain\Common\DomainRepository;
  */
 interface UserRepositoryInterface extends DomainRepository
 {
+    public function lockUsers(User ...$users): void;
 }

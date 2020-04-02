@@ -47,4 +47,9 @@ class Wallet
     {
         return $this->currency;
     }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
 }
