@@ -21,6 +21,10 @@ class CreateDepositTransactionHandler implements MessageHandlerInterface
 
     public function __invoke(CreateDepositTransactionCommand $command): void
     {
+        if ($command->amount() <= 0) {
+            throw new \RuntimeException('The zero amount, 422, should be refactored'); // todo
+        }
+
         $transaction = Transaction::createDepositTransaction(
             $command->amount(),
             $command->wallet()
