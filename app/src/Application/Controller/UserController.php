@@ -6,13 +6,13 @@ namespace App\Application\Controller;
 
 use App\Application\Bus\Message\CreateUserCommand;
 use App\Domain\Employee\Criteria\CurrencyByNameCriteria;
+use App\Domain\Wallet\TransactionRepositoryInterface;
 use App\Domain\User\User;
 use App\Infrastructure\Persistence\Doctrine\CurrencyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Intl\Countries;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Application\Annotation\ControllerActionResponseCode;
@@ -60,5 +60,22 @@ class UserController extends AbstractController
             ->getResult();
 
         return $user->toArray();
+    }
+
+    /**
+     * @Route("/{id}/balance", requirements={"id": "\d+"}, methods={"GET"})
+     */
+    public function getUserBalanceAction(
+        User $user,
+        Request $request,
+        TransactionRepositoryInterface $transactionRepository
+    ) {
+        if (!$wallet = $user->getWallet(trim((string) $request->get('currency')))) {
+            return new JsonResponse(['message' => 'Wallet with this currency is not found'], 404);
+        }
+
+        return [
+            'balance' => $transactionRepository->getBalance($wallet),
+        ];
     }
 }

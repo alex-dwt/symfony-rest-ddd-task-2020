@@ -52,4 +52,9 @@ class Wallet
     {
         return $this->user;
     }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 }

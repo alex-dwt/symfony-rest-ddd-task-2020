@@ -8,3 +8,6 @@ services:
 
     App\Domain\User\UserRepositoryInterface:
         alias: App\Infrastructure\Persistence\Doctrine\UserRepository
+
+    App\Domain\Wallet\TransactionRepositoryInterface:
+        alias: App\Infrastructure\Persistence\Doctrine\TransactionRepository
