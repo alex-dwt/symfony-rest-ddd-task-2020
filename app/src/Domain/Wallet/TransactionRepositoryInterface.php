@@ -8,7 +8,7 @@ use App\Domain\Common\DomainRepository;
 
 interface TransactionRepositoryInterface extends DomainRepository
 {
-    public function getBalance(Wallet $wallet): float;
+    public function getBalance(Wallet $wallet, bool $setLock = false): float;
 
     public function getSummaryForPeriod(
         Wallet $wallet,

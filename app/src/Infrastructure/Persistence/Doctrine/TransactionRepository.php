@@ -16,17 +16,23 @@ class TransactionRepository extends AbstractDoctrineRepository implements Transa
         return Transaction::class;
     }
 
-    public function getBalance(Wallet $wallet): float
+    public function getBalance(Wallet $wallet, bool $setLock = false): float
     {
         $conn = $this->em->getConnection();
 
-        $stmt = $conn->prepare('
+        $sql = '
             SELECT SUM(' . $this->getAmountFieldSelectSql() . ') as balance
             FROM transactions
             WHERE
                 sender_wallet_id = :walletId
                 OR recipient_wallet_id = :walletId
-        ');
+        ';
+
+        if ($setLock) {
+            $sql .= ' FOR UPDATE';
+        }
+
+        $stmt = $conn->prepare($sql);
         $stmt->execute([
             'depositType' => Transaction::TYPE_DEPOSIT,
             'transferType' => Transaction::TYPE_TRANSFER,

@@ -35,8 +35,7 @@ class CreateTransferTransactionHandler implements MessageHandlerInterface
             throw new \RuntimeException('The zero amount, 422, should be refactored'); // todo
         }
 
-        // todo add lock
-        $senderWalletBalance = $this->transactionRepository->getBalance($command->senderWallet());
+        $senderWalletBalance = $this->transactionRepository->getBalance($command->senderWallet(), true);
 
         if ($senderWalletBalance < $command->amount()) {
             throw new \RuntimeException('Balance is not enough, should be refactored to another error and http code'); // todo
