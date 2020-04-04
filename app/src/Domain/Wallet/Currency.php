@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Currency
 {
-    private const USD_NAME = 'usd';
+    public const USD_NAME = 'usd';
 
     /**
      * @ORM\Id()
@@ -34,5 +34,10 @@ class Currency
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 }

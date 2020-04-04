@@ -57,7 +57,7 @@ class CreateFakeTransactionsAndRatesCommand extends Command
         $this->currencyConverter = $currencyConverter;
 
         $this->currencyUsd = $currencyRepository->getOneByCriteria(
-            new CurrencyByNameCriteria('usd')
+            new CurrencyByNameCriteria(Currency::USD_NAME)
         );
     }
 
