@@ -18,3 +18,6 @@ download-exchange-rates-for-today:
 
 run-concurrency-test:
 	docker-compose exec php /concurrency_test.bash
+
+run-concurrency-test-2:
+	docker-compose exec php /concurrency_test_2.bash

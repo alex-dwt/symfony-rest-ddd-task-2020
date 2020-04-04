@@ -10,7 +10,9 @@
 
 
 ## How to test
-make run-concurrency-test
+make run-concurrency-test  
+OR  
+make run-concurrency-test-2
 
 
 

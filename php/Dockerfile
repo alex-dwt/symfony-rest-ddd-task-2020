@@ -24,3 +24,4 @@ RUN docker-php-ext-install bcmath
 RUN apt-get update && apt-get install -y apache2-utils
 
 COPY ./concurrency_test.bash /concurrency_test.bash
+COPY ./concurrency_test_2.bash /concurrency_test_2.bash

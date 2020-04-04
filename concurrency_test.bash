@@ -40,5 +40,7 @@ ab -q -n 150 -c 10 \
 #echo -e "\nCount of failed requests should be 100\n"
 
 echo -e "Checking balance, it should be 0"
-curl --silent "http://$_HOST/api/users/$_userId/balance?currency=eur"
+curl --silent "http://$_HOST/api/users/$_userId/balance?currency=eur" | grep '{"balance":0}'
+
+exit $?
 
