@@ -14,6 +14,13 @@ class Currency
 {
     public const USD_NAME = 'usd';
 
+    public const CURRENCIES = [
+        self::USD_NAME,
+        'gbp',
+        'eur',
+        'pln',
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-sleep 20
+#sleep 20
 
-/app/bin/console doctrine:schema:update --force
+#/app/bin/console doctrine:schema:update --force
 
 #ini=/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 #

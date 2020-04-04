@@ -24,13 +24,6 @@ class CreateFakeTransactionsAndRatesCommand extends Command
 {
     private const DAYS_COUNT = 35;
 
-    private const CURRENCIES = [
-        'gbp',
-        'usd',
-        'eur',
-        'pln',
-    ];
-
     private EntityManagerInterface $em;
     private MessageBusInterface $commandBus;
     private CurrenciesRatesFetcher $currencyRatesFetcher;
@@ -124,7 +117,7 @@ class CreateFakeTransactionsAndRatesCommand extends Command
 
         $j = 0;
 
-        foreach (self::CURRENCIES as $currency) {
+        foreach (Currency::CURRENCIES as $currency) {
             for ($i = 0; $i < 2; $i++) {
                 /** @var User $user */
                 $user = $this->commandBus->dispatch(
