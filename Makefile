@@ -15,3 +15,6 @@ reload-fake-data:
 
 download-exchange-rates-for-today:
 	docker-compose exec php bin/console app:fetch-currency-rates
+
+run-concurrency-test:
+	docker-compose exec php /concurrency_test.bash

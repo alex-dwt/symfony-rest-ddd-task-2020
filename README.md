@@ -8,6 +8,12 @@
 * make reload-fake-data
 
 
+
+## How to test
+make run-concurrency-test
+
+
+
 ## Examples of endpoints:
 
 **Registration**  
@@ -28,6 +34,7 @@ curl "http://localhost:8061/api/reports/5/period?currency=eur&csv=1"
 
 **Get transactions summary**  
 curl "http://localhost:8061/api/reports/5/summary?currency=eur&csv=0&dateFrom=2010-04-07 10:10:10&dateTill=2030-04-07 10:10:10"
+
 
 
 ## Where to see live SQL queries

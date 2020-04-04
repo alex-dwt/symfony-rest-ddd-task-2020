@@ -20,3 +20,7 @@ COPY php/boot.bash /scripts/boot.bash
 #RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 RUN docker-php-ext-install bcmath
+
+RUN apt-get update && apt-get install -y apache2-utils
+
+COPY ./concurrency_test.bash /concurrency_test.bash
