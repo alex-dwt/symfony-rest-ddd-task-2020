@@ -62,21 +62,21 @@ class CurrenciesRatesFetcher
     private function getFakeRatesTable(): array
     {
         return [
-            'gbp:usd' => 1.24 + rand(1, 5) / 100,
-            'gbp:eur' => 1.13 + rand(1, 5) / 100,
-            'gbp:pln' => 5.21 + rand(1, 5) / 100,
+            'gbp:usd' => 1.24 + ($rand1 = rand(1, 5) / 100),
+            'gbp:eur' => 1.13 + $rand1,
+            'gbp:pln' => 5.21 + $rand1,
 
-            'usd:gbp' => 0.81 + rand(1, 5) / 100,
-            'usd:eur' => 0.91 + rand(1, 5) / 100,
-            'usd:pln' => 4.20 + rand(1, 5) / 100,
+            'usd:gbp' => 0.81 + ($rand2 = rand(1, 5) / 100),
+            'usd:eur' => 0.91 + $rand2,
+            'usd:pln' => 4.20 + $rand2,
 
-            'eur:usd' => 1.10 + rand(1, 5) / 100,
-            'eur:gbp' => 0.88 + rand(1, 5) / 100,
-            'eur:pln' => 4.60 + rand(1, 5) / 100,
+            'eur:usd' => 1.10 + ($rand3 = rand(1, 5) / 100),
+            'eur:gbp' => 0.88 + $rand3,
+            'eur:pln' => 4.60 + $rand3,
 
-            'pln:usd' => 0.24 + rand(1, 5) / 100,
-            'pln:eur' => 0.22 + rand(1, 5) / 100,
-            'pln:gbp' => 0.19 + rand(1, 5) / 100,
+            'pln:usd' => 0.24 + ($rand4 = rand(1, 5) / 100),
+            'pln:eur' => 0.22 + $rand4,
+            'pln:gbp' => 0.19 + $rand4,
         ];
     }
 }

@@ -108,7 +108,14 @@ class TransactionRepository extends AbstractDoctrineRepository implements Transa
                     ELSE NULL
                 END as currency,
                 ' . $this->getAmountFieldSelectSql() . ' as amount,
-                ' . $this->getAmountUsdFieldSelectSql() . ' as usdAmount
+                ' . $this->getAmountUsdFieldSelectSql() . ' as usdAmount,
+                CASE
+                    WHEN (type = :depositType OR type = :transferType) AND recipient_wallet_id = :walletId
+                        THEN IFNULL(er1.rate, 1)
+                    WHEN type = :transferType AND sender_wallet_id = :walletId
+                        THEN IFNULL(er2.rate, 1)
+                    ELSE NULL
+                END as usdRate
             FROM transactions ' . $this->getJoinsPeriodSqlPart() . '
             WHERE
                 (

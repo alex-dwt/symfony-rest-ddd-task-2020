@@ -43,3 +43,12 @@ curl "http://localhost:8061/api/reports/5/summary?currency=eur&csv=0&dateFrom=20
 
 http://localhost:8061/_profiler/latest  
 "Doctrine" TAB
+
+
+
+## DB credentials
+
+* Port 3306
+* Database name: example
+* Database user: example
+* Database password: example
